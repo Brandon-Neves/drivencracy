@@ -22,9 +22,11 @@ export async function validationChoiceId(req, res, next) {
   const id = req.params.id
   const poll = await db
     .collection('choices')
-    .findOne({ pollId: new ObjectId(id) })
+    .find({ pollId: new ObjectId(id) })
+    .toArray()
   try {
     if (!poll) return res.sendStatus(422)
+    res.locals.poll = poll
     next()
   } catch (err) {
     res.sendStatus(500)

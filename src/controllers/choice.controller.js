@@ -14,8 +14,9 @@ export async function registerChoice(req, res) {
 }
 
 export async function getChoiceId(req, res) {
+  const poll = res.locals.poll
   try {
-    res.sendStatus(201)
+    res.send(poll)
   } catch (err) {
     res.sendStatus(500)
   }

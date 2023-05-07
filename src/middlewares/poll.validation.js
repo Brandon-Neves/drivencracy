@@ -1,4 +1,4 @@
-import db from '../database/db.js'
+import dayjs from 'dayjs'
 
 export async function pollValidation(req, res, next) {
   const poll = req.body
@@ -6,8 +6,7 @@ export async function pollValidation(req, res, next) {
   const { title } = req.body
   if (!title || title.lenght === 0) return res.sendStatus(422)
   if (!expireAt) {
-    expireAt = new Date()
-    expireAt.setDate(expireAt.getDate() + 30)
+    expireAt = dayjs().add(30, 'day').format('YYYY-MM-DD HH:mm')
     const newPoll = { title, expireAt }
     res.locals.newPoll = newPoll
     return next()

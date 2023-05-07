@@ -1,12 +1,13 @@
 import cors from 'cors'
 import express from 'express'
 import pollRouter from './routes/poll.routes.js'
+import choiceRouter from './routes/choice.routes.js'
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use(pollRouter)
+app.use([pollRouter, choiceRouter])
 
 const port = process.env.PORT || 5000
 

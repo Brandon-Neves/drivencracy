@@ -1,9 +1,7 @@
 import db from '../database/db.js'
 
 export async function createdPoll(req, res) {
-  const { title, expireAt } = res.locals.newPoll
-  console.log(title, expireAt)
-
+  const { title, expireAt } = res.locals.poll
   try {
     await db.collection('polls').insertOne({
       title: title,

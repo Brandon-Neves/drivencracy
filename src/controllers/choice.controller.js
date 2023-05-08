@@ -7,7 +7,7 @@ export async function registerChoice(req, res) {
     await db
       .collection('choices')
       .insertOne({ title: title, pollId: new ObjectId(id) })
-    res.sendStatus(201)
+    res.status(201).send({ title: title, pollId: id })
   } catch (err) {
     res.sendStatus(500)
   }

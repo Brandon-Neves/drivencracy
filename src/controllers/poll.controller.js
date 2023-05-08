@@ -7,7 +7,7 @@ export async function createdPoll(req, res) {
       title: title,
       expireAt: expireAt
     })
-    res.sendStatus(201)
+    res.status(201).send({ title: title, expireAt: expireAt })
   } catch (err) {
     res.sendStatus(500)
   }
